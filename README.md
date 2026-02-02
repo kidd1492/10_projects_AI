@@ -13,7 +13,6 @@ These four projects build the mental model of linear algebra → optimization �
 - Geometry of projection
 - MSE, gradients, updates
 
-
 2. Multi‑Feature Regression
 
 - Vectorized dot products
@@ -32,54 +31,46 @@ These four projects build the mental model of linear algebra → optimization �
 
 - Hidden layer
 - Activation functions
-Geometry of separating non‑linearly separable data
+- Geometry of separating non‑linearly separable data
+
+5. The Design Matrix **𝑋** Neural network layers
+
+- Why ML always uses a matrix
+- how OLS is literally a matrix equation
+- how neural networks generalize it
+- how batching is just slicing rows of 𝑋
+- how shapes flow through the entire system
+
 
 **Section 2: Sequence Models (RNN → LSTM → Proto‑LLM)**
 
-This is where you transition from static vectors to temporal vectors.
+6. Build a Neural Network Class From Scratch
 
+- A Layer class
+- A NeuralNetwork class
+- Forward pass
+- Backprop
+- Training loop
+- Loss functions
+- Activation functions
 
-5. Simple RNN: Next Character Predictor
+7. Simple RNN: Next Character Predictor
 
 - Recurrence
 - Exploding/vanishing gradients
 - How memory works
 
-6. LSTM: Better Sequence Memory
+8. LSTM: Better Sequence Memory
 
 - Gates
 - Cell state
 - Why LSTMs solved long‑range dependencies
 
-7. Translation Mini‑Model (English → Spanish)
+9. Translation Mini‑Model (English → Spanish)
 
 - Sequence‑to‑sequence
 - Encoder/decoder
 - Attention (optional preview)
 
-**Section 3: Agentic Systems (Local Models → LangGraph → RAG)**
-
-This is where you connect neural nets to real‑world systems.
-
-8. How an AI Agent Works Without a Framework
-
-- Run models offline
-- AI Agent from scratch
-- tool calls
-- User inputs
-- Memory
-
-9. LangGraph Framework for Agent Workflow
-
-- Tools
-- Memory
-- State machines
-
-10. RAG System
-
-- Embeddings
-- Vector search
-- Retrieval
-- Context injection
 
 **Neural Networks Simple Math**
