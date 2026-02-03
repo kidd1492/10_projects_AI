@@ -47,7 +47,7 @@ These five projects establish the core ideas of **linear algebra → optimizatio
 - How shapes flow through the system  
 - How this is a neural network layer  
 
-**Bonus:**  
+[Neural Network Math]('https://kidd1492.github.io/intro_nn.html')
 A simple “Neural Networks Math” explanation with three images summarizing what these five projects teach.
 
 ---
