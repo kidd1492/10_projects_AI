@@ -70,7 +70,7 @@ These four projects build the mental model of linear algebra → optimization �
 
 - Sequence‑to‑sequence
 - Encoder/decoder
-- Attention (optional preview)
+- Attention 
 
 
 **Neural Networks Simple Math**
