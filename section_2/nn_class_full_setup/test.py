@@ -6,7 +6,7 @@ from model import SequentialModel
 from trainer import Trainer
 from losses import mse, mse_deriv, binary_cross_entropy, binary_cross_entropy_deriv
 from saved_model import save_model, load_model
-from data import get_data   # You already have this in your project
+from data import get_data 
 
 
 # Build Model
