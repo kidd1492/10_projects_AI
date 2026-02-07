@@ -53,7 +53,7 @@ class SequentialModel:
             a = x
             for layer in self.layers:
                 a = layer.forward(a)
-            preds.append(a)
+            preds.append(a.item() if a.size == 1 else a)
         return np.array(preds)
 
 

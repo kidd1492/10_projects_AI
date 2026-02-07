@@ -30,9 +30,7 @@ class Trainer:
                 X_batch = X[batch_idx]
                 y_batch = y[batch_idx]
 
-                # Forward pass (batch)
                 batch_loss = 0
-                grad_accumulator = None
 
                 for i in range(len(X_batch)):
                     x_i = X_batch[i]
@@ -51,36 +49,36 @@ class Trainer:
                     # Backprop
                     self.model.backward(grad_output, activations, self.lr)
 
-                # Average batch loss
                 batch_loss /= len(X_batch)
                 self.loss_history.append(batch_loss)
 
-            # Logging
             if epoch % log_interval == 0:
                 print(f"Epoch {epoch}: Loss = {float(batch_loss):.6f}")
 
-
-
     # Evaluation (Regression or Classification)
- 
+
     def evaluate(self, X, y, classification=False):
         preds = self.model.predict(X)
         loss = np.mean([self.loss_fn(preds[i], y[i]) for i in range(len(y))])
 
         if classification:
-            # For binary classification: threshold at 0.5
-            if preds.ndim == 2 and preds.shape[1] == 1:
+
+            # Case 1: Binary classification, predictions shape (N,)
+            if preds.ndim == 1:
                 preds_class = (preds > 0.5).astype(int)
+
+            # Case 2: Binary classification, predictions shape (N,1)
+            elif preds.ndim == 2 and preds.shape[1] == 1:
+                preds_class = (preds[:, 0] > 0.5).astype(int)
+
+            # Case 3: Multi-class classification
             else:
-                # For multi-class: argmax
                 preds_class = np.argmax(preds, axis=1)
 
             accuracy = np.mean(preds_class.flatten() == y.flatten())
             return loss, accuracy
 
         return loss
-
-    # Utility: Get Loss History
 
     def get_loss_history(self):
         return np.array(self.loss_history)

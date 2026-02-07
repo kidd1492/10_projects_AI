@@ -24,15 +24,13 @@ def binary_cross_entropy(y_hat, y, eps=1e-10):
     y_hat: predicted probability (0..1)
     y: true label (0 or 1)
     """
-    y_hat = np.clip(y_hat, eps, 1 - eps)
-    return -(y * np.log(y_hat) + (1 - y) * np.log(1 - y_hat))
+    y_hat = np.clip(y_hat, eps, 1 - eps) 
+    loss = -(y * np.log(y_hat) + (1 - y) * np.log(1 - y_hat)) 
+    return np.mean(loss) # ensures scalar
 
 def binary_cross_entropy_deriv(y_hat, y, eps=1e-10):
-    """
-    dL/dy_hat = (y_hat - y) / (y_hat * (1 - y_hat))
-    BUT with sigmoid + BCE, this simplifies to (y_hat - y)
-    """
     return (y_hat - y)
+
 
 
 # Softmax Cross Entropy (Multi-Class Classification)
