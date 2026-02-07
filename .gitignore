@@ -6,6 +6,7 @@ __pycache__/
 # C extensions
 *.so
 
+section_2/nn_class_full_setup/model.pkl
 # Distribution / packaging
 .Python
 build/

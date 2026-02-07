@@ -9,9 +9,8 @@ from saved_model import load_model
 # Define the SAME model architecture used during training
 
 model = SequentialModel([
-    DenseLayer(2, 6, relu, relu_deriv),
-    DenseLayer(6, 3, relu, relu_deriv),
-    DenseLayer(3, 1, sigmoid, sigmoid_deriv)   # or linear for regression
+    DenseLayer(2, 2, relu, relu_deriv),
+    DenseLayer(2, 1, sigmoid, sigmoid_deriv)   # or linear for regression
 ])
 
 # Load saved parameters
@@ -27,10 +26,10 @@ def predict(input_vector):
 
 
 # Example usage
-
 if __name__ == "__main__":
-    samples = [[9, 6], [4, 8], [4, 3], [9, 8]]
+    samples = [[0,0], [0,1], [1,0], [1,1]]
 
     for s in samples:
         prediction = predict(s)
         print(f"Input: {s} -> Prediction: {prediction:.4f}")
+

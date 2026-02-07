@@ -2,8 +2,6 @@ import pickle
 
 
 # Save Model Parameters
-
-
 def save_model(model, filepath='model.pkl'):
     """
     Saves only the parameters (weights and biases) of each layer.

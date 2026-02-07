@@ -4,7 +4,7 @@ from layers import DenseLayer
 from activations import relu, relu_deriv, sigmoid, sigmoid_deriv, linear, linear_deriv
 from model import SequentialModel
 from trainer import Trainer
-from losses import mse, mse_deriv, binary_cross_entropy, binary_cross_entropy_deriv
+from losses import binary_cross_entropy, binary_cross_entropy_deriv
 from saved_model import save_model, load_model
 from data import get_data 
 
@@ -12,9 +12,8 @@ from data import get_data
 # Build Model
 
 model = SequentialModel([
-    DenseLayer(2, 6, relu, relu_deriv),
-    DenseLayer(6, 3, relu, relu_deriv),
-    DenseLayer(3, 1, sigmoid, sigmoid_deriv)   # sigmoid for binary classification
+    DenseLayer(2, 2, relu, relu_deriv),
+    DenseLayer(2, 1, sigmoid, sigmoid_deriv)   # sigmoid for binary classification
 ])
 
 model.summary()
