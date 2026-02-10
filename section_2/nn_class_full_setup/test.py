@@ -37,13 +37,13 @@ trainer = Trainer(
     model=model,
     loss_fn=binary_cross_entropy,
     loss_deriv=binary_cross_entropy_deriv,
-    lr=0.01
+    lr=0.1
 )
 
 trainer.train(
     X_train,
     y_train,
-    epochs=2000,
+    epochs=3000,
     batch_size=4,
     log_interval=200
 )
