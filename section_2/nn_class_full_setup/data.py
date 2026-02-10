@@ -15,5 +15,4 @@ def get_data():
         [0]
     ], dtype=np.float32)
 
-    return X, X, y, y   # train = test
-
+    return X, y

@@ -1,63 +1,37 @@
 import numpy as np
 
 class SequentialModel:
-    """
-    A simple container that stacks layers in order.
-    """
-
     def __init__(self, layers):
-        self.layers = layers  # list of Layer instances
-
-  
-    # Forward Pass
+        self.layers = layers
 
     def forward(self, x):
         """
-        x: input vector (numpy array)
-        Returns: list of activations (including input)
+        x: (batch, in_dim)
+        returns: (batch, out_dim)
         """
-        activations = [x]
-
+        a = x
         for layer in self.layers:
-            a = layer.forward(activations[-1])
-            activations.append(a)
+            a = layer.forward(a)
+        return a
 
-        return activations
-
-
-    # Backward Pass
- 
-    def backward(self, grad_output, activations, lr):
+    def backward(self, grad_output):
         """
-        grad_output: gradient from loss wrt final output
-        activations: list returned from forward()
+        grad_output: (batch, out_dim)
         """
         grad = grad_output
-
-        # Traverse layers in reverse order
-        for i in reversed(range(len(self.layers))):
-            grad = self.layers[i].backward(grad, lr)
-
+        for layer in reversed(self.layers):
+            grad = layer.backward(grad)
         return grad
-
-
-    # Prediction (no gradient)
 
     def predict(self, X):
         """
-        X: array of input samples (shape: num_samples x input_dim)
-        Returns: predictions for each sample
+        X: (N, in_dim)
+        returns: (N, out_dim)
         """
-        preds = []
-        for x in X:
-            a = x
-            for layer in self.layers:
-                a = layer.forward(a)
-            preds.append(a.item() if a.size == 1 else a)
-        return np.array(preds)
-
-
-    # Optional: Model Summary (like Keras)
+        a = X
+        for layer in self.layers:
+            a = layer.forward(a)
+        return a
 
     def summary(self):
         print("Model Summary:")

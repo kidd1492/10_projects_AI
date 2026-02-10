@@ -5,12 +5,10 @@ from activations import relu, relu_deriv, sigmoid, sigmoid_deriv, linear, linear
 from model import SequentialModel
 from trainer import Trainer
 from losses import binary_cross_entropy, binary_cross_entropy_deriv
-from saved_model import save_model, load_model
-from data import get_data 
-
+from saved_model import save_model
+from data import get_data
 
 # Build Model
-
 model = SequentialModel([
     DenseLayer(2, 4, relu, relu_deriv),
     DenseLayer(4, 1, sigmoid, sigmoid_deriv)   # sigmoid for binary classification
@@ -18,20 +16,8 @@ model = SequentialModel([
 
 model.summary()
 
-
 # Load Data
-
-X_train, X_test, y_train, y_test = get_data()
-
-# Ensure shapes are correct
-X_train = np.array(X_train)
-y_train = np.array(y_train)
-X_test = np.array(X_test)
-y_test = np.array(y_test)
-
-
-# Train Model
-
+X, y = get_data()  # X: (4,2), y: (4,1)
 
 trainer = Trainer(
     model=model,
@@ -41,22 +27,16 @@ trainer = Trainer(
 )
 
 trainer.train(
-    X_train,
-    y_train,
+    X,
+    y,
     epochs=3000,
     batch_size=4,
     log_interval=200
 )
 
-
-# Evaluate Model
-
-loss, accuracy = trainer.evaluate(X_test, y_test, classification=True)
+loss, accuracy = trainer.evaluate(X, y, classification=True)
 print(f"\nFinal Test Loss: {loss:.6f}")
 print(f"Final Test Accuracy: {accuracy * 100:.2f}%")
 
-
-# Save Model
 save_model(model, filepath="model.pkl")
 print("\nModel saved successfully.")
-

@@ -7,8 +7,8 @@ from saved_model import load_model
 
 # Define the SAME model architecture used during training
 model = SequentialModel([
-    DenseLayer(2, 2, relu, relu_deriv),
-    DenseLayer(2, 1, sigmoid, sigmoid_deriv)
+    DenseLayer(2, 4, relu, relu_deriv),
+    DenseLayer(4, 1, sigmoid, sigmoid_deriv)
 ])
 
 # Load saved parameters
