@@ -12,8 +12,8 @@ from data import get_data
 # Build Model
 
 model = SequentialModel([
-    DenseLayer(2, 2, relu, relu_deriv),
-    DenseLayer(2, 1, sigmoid, sigmoid_deriv)   # sigmoid for binary classification
+    DenseLayer(2, 4, relu, relu_deriv),
+    DenseLayer(4, 1, sigmoid, sigmoid_deriv)   # sigmoid for binary classification
 ])
 
 model.summary()

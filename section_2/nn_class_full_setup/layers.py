@@ -19,8 +19,12 @@ class Layer:
 
 class DenseLayer(Layer):
     def __init__(self, in_dim, out_dim, activation, activation_deriv):
-        # initialization for ReLU-like activations
-        self.w = np.random.randn(out_dim, in_dim) * np.sqrt(2.0 / in_dim)
+        # Kaiming for ReLU, Xavier for Sigmoid
+        if activation == 'sigmoid':
+            self.w = np.random.randn(out_dim, in_dim) * np.sqrt(1.0 / in_dim)
+        else:
+            self.w = np.random.randn(out_dim, in_dim) * np.sqrt(2.0 / in_dim)
+
         self.b = np.zeros(out_dim)
 
         self.activation = activation
