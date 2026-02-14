@@ -60,3 +60,36 @@ class DenseLayer(Layer):
         self.b -= lr * self.grad_b_accum
         self.grad_w_accum.fill(0)
         self.grad_b_accum.fill(0)
+
+
+
+# Embedding Layer (Optional for Project 5, Useful Later)
+
+class EmbeddingLayer(Layer):
+    def __init__(self, vocab_size, embedding_dim):
+        self.vocab_size = vocab_size
+        self.embedding_dim = embedding_dim
+
+        # Small random initialization
+        self.embeddings = np.random.randn(vocab_size, embedding_dim) * 0.01
+
+        # Cache for backprop
+        self.last_input_indices = None
+
+    def forward(self, input_indices):
+        """
+        input_indices: array of token indices (shape: sequence_length)
+        Returns: embeddings for each token
+        """
+        self.last_input_indices = input_indices
+        return self.embeddings[input_indices]
+
+    def backward(self, grad_output, lr):
+        """
+        grad_output: gradient wrt embedding output (shape: seq_len, embedding_dim)
+        """
+        for i, idx in enumerate(self.last_input_indices):
+            self.embeddings[idx] -= lr * grad_output[i]
+
+        # Embedding layers do not propagate gradients backward to earlier layers
+        return None
